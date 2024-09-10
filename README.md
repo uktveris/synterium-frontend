@@ -48,3 +48,5 @@ export default tseslint.config({
   },
 })
 ```
+# synterium-frontend
+frontend application for a file sharing service
