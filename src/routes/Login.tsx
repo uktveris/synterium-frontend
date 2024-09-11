@@ -1,5 +1,7 @@
+// import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface FormInputs {
   email: string;
@@ -28,9 +30,17 @@ function Login() {
       console.log("no password was typed!!");
     }
 
-    if (data.email && data.password) {
-      navigate("/dashboard");
-    }
+    // if (data.email && data.password) {
+    //   navigate("/dashboard");
+    // }
+    axios
+      .post<{ msg: string }>("http://localhost:8080/login", data)
+      .then((response) => {
+        console.log("response received!");
+        console.log(response.data.msg);
+        navigate("/dashboard");
+      })
+      .catch((err) => console.log("error: " + (err as Error).message));
   };
 
   return (

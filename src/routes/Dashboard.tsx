@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+interface Message {
+  owner: string;
+  message: string;
+}
+
 function Dashboard() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/test")
+      .get<Message[]>("http://localhost:8080/api/test")
       .then((response) => {
         console.log(response.data);
         setMessages(response.data);
