@@ -1,7 +1,7 @@
-// import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 interface FormInputs {
   email: string;
@@ -15,7 +15,14 @@ function Login() {
     formState: { errors },
   } = useForm<FormInputs>();
 
+  const { setAuthed } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const navToRegister = () => {
+    navigate("/register");
+  };
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     if (data.email) {
@@ -30,22 +37,20 @@ function Login() {
       console.log("no password was typed!!");
     }
 
-    // if (data.email && data.password) {
-    //   navigate("/dashboard");
-    // }
     axios
       .post<{ msg: string }>("http://localhost:8080/login", data)
       .then((response) => {
         console.log("response received!");
-        console.log(response.data.msg);
-        navigate("/dashboard");
+        console.log(JSON.stringify(response.data));
+        setAuthed(true);
+        navigate(from, { replace: true });
       })
       .catch((err) => console.log("error: " + (err as Error).message));
   };
 
   return (
     <>
-      <h1>This is login/register page</h1>
+      <h1>This is login page</h1>
       <form onSubmit={handleSubmit(onSubmit)} name="login">
         <label htmlFor="email">Email: </label>
         <input
@@ -61,6 +66,7 @@ function Login() {
         {errors.password && <p>{errors.password.message}</p>}
         <button type="submit"> Login </button>
       </form>
+      <button onClick={navToRegister}>Want to register?</button>
     </>
   );
 }

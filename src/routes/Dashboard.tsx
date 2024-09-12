@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface Message {
   owner: string;
@@ -9,6 +11,18 @@ interface Message {
 function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
+  const { setAuthed } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // setAuthed(false);
+    // navigate("/login");
+    console.log("log out..");
+  };
+
+  const handleNavToSettings = () => {
+    navigate("/settings");
+  };
 
   useEffect(() => {
     axios
@@ -26,7 +40,7 @@ function Dashboard() {
       });
   }, []);
   return (
-    <div>
+    <>
       <h1>This is the dashboard page</h1>
       <p> this is some sample text</p>
       <h4>Messages: </h4>
@@ -38,7 +52,9 @@ function Dashboard() {
           <p>{m.message}</p>
         </div>
       ))}
-    </div>
+      <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleNavToSettings}>Go to settings</button>
+    </>
   );
 }
 
