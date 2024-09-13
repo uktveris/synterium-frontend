@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface FormInputs {
   email: string;
@@ -29,6 +30,20 @@ function Register() {
       console.log("typed email: " + data.email);
       console.log("typed password: " + data.password);
       console.log("typed pwd confirmation: " + data.confirmPwd);
+      const email = data.email;
+      const password = data.password;
+
+      axios
+        .post("http://localhost:8080/register", { email, password })
+        .then((response) => {
+          console.log("response: " + response);
+          if (response.data.success) {
+            console.log("managed to register!: " + response.data.success);
+          } else {
+            console.log(response.data.message);
+          }
+        })
+        .catch((err) => console.log("error: " + (err as Error).message));
     }
   };
 
