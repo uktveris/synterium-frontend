@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useAxiosPrivate } from "../hooks/useAxiosPrivate";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -11,13 +11,12 @@ interface Message {
 function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
-  const { setAuthed } = useAuth();
+  const { accessToken } = useAuth();
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
 
-  const handleLogout = () => {
-    // setAuthed(false);
-    // navigate("/login");
-    console.log("log out..");
+  const handleNavToHome = () => {
+    navigate("/home");
   };
 
   const handleNavToSettings = () => {
@@ -25,34 +24,39 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    axios
-      .get<Message[]>("http://localhost:8080/api/test")
-      .then((response) => {
-        console.log(response.data);
-        setMessages(response.data);
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log("error: " + (err as Error).message);
-      })
-      .then(() => {
-        setLoading(false);
-      });
-  }, []);
+    console.log("LOG: dashboard - at: " + accessToken);
+    const getMessages = () => {
+      axiosPrivate
+        .get<Message[]>("/api/test", { withCredentials: true })
+        .then((response) => {
+          setLoading(false);
+          setMessages(response.data);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(
+            "LOG: dashboard: error occurred: " + (err as Error).message,
+          );
+        });
+    };
+    getMessages();
+  }, [accessToken, axiosPrivate]);
   return (
     <>
       <h1>This is the dashboard page</h1>
       <p> this is some sample text</p>
       <h4>Messages: </h4>
       {loading && <p>Loading...</p>}
-      {!loading && messages.length === 0 && <p>No messages available. </p>}
+      {!loading && messages.length === 0 && (
+        <p>No messages available. or you dont have access to them. </p>
+      )}
       {messages.map((m, index) => (
         <div key={index}>
           <p>{m.owner}</p>
           <p>{m.message}</p>
         </div>
       ))}
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleNavToHome}>Home</button>
       <button onClick={handleNavToSettings}>Go to settings</button>
     </>
   );

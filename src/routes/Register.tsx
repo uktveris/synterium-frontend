@@ -2,7 +2,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import { axiosMain } from "../api/axiosProvider";
 
 interface FormInputs {
   email: string;
@@ -33,12 +34,14 @@ function Register() {
       const email = data.email;
       const password = data.password;
 
-      axios
+      axiosMain
         .post("http://localhost:8080/register", { email, password })
         .then((response) => {
           console.log("response: " + response);
           if (response.data.success) {
             console.log("managed to register!: " + response.data.success);
+            setAuthed(true);
+            navigate("/dashboard");
           } else {
             console.log(response.data.message);
           }

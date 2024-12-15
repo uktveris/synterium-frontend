@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { axiosMain } from "../api/axiosProvider";
 import useAuth from "../hooks/useAuth";
 
 interface FormInputs {
@@ -15,7 +15,7 @@ function Login() {
     formState: { errors },
   } = useForm<FormInputs>();
 
-  const { setAuthed } = useAuth();
+  const { setAuthed, setAccessToken } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -37,11 +37,18 @@ function Login() {
       console.log("no password was typed!!");
     }
 
-    axios
-      .post<{ msg: string }>("http://localhost:8080/login", data)
+    axiosMain
+      .post<{ data: { accessToken: string } }>(
+        "http://localhost:8080/login",
+        data,
+        { withCredentials: true },
+      )
       .then((response) => {
-        console.log("response received!");
+        console.log(
+          "LOG: login - response received, following accesstoken set:",
+        );
         console.log(JSON.stringify(response.data));
+        setAccessToken(response.data.accessToken);
         setAuthed(true);
         navigate(from, { replace: true });
       })
