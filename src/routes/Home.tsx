@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { Logout } from "../components/Logout";
 import { axiosMain } from "../api/axiosProvider";
+import { FileUploader } from "../components/FileUploader";
 
 function Home() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function Home() {
       <button onClick={navtoSettings}> to settings</button>
       {/* <button onClick={navtoRegister}> to register</button> */}
       {!authed && <button onClick={navtoRegister}>to register</button>}
-      {/* <button onClick={navtoLogOut}> to logout</button> */}
+      {authed && <FileUploader />}
       {authed && <Logout />}
     </>
   );
