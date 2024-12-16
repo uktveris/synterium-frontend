@@ -35,7 +35,7 @@ function Register() {
       const password = data.password;
 
       axiosMain
-        .post("http://localhost:8080/register", { email, password })
+        .post("/auth/register", { email, password })
         .then((response) => {
           console.log("response: " + response);
           if (response.data.success) {

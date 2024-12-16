@@ -38,11 +38,9 @@ function Login() {
     }
 
     axiosMain
-      .post<{ data: { accessToken: string } }>(
-        "http://localhost:8080/login",
-        data,
-        { withCredentials: true },
-      )
+      .post<{ data: { accessToken: string } }>("/auth/login", data, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(
           "LOG: login - response received, following accesstoken set:",

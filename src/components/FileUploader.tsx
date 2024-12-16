@@ -18,7 +18,7 @@ function FileUploader() {
     const formData = new FormData();
     Array.from(files).forEach((f) => formData.append("files", f));
     axiosPrivate
-      .post("/file-upload", formData, {
+      .post("/files/file-upload", formData, {
         headers: { "Content-type": "multipart/form-data" },
       })
       .then((response) => {

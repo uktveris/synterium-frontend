@@ -15,6 +15,21 @@ function Dashboard() {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
+  const messagesArr = [
+    {
+      owner: "first owner",
+      message: "first msg",
+    },
+    {
+      owner: "second owner",
+      message: "another msg",
+    },
+    {
+      owner: "last owner",
+      message: "more msg",
+    },
+  ];
+
   const handleNavToHome = () => {
     navigate("/home");
   };
@@ -27,7 +42,7 @@ function Dashboard() {
     console.log("LOG: dashboard - at: " + accessToken);
     const getMessages = () => {
       axiosPrivate
-        .get<Message[]>("/api/test", { withCredentials: true })
+        .get<Message[]>("/files", { withCredentials: true })
         .then((response) => {
           setLoading(false);
           setMessages(response.data);
@@ -38,6 +53,7 @@ function Dashboard() {
             "LOG: dashboard: error occurred: " + (err as Error).message,
           );
         });
+      // setMessages(messagesArr);
     };
     getMessages();
   }, [accessToken, axiosPrivate]);

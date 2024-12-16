@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { Logout } from "../components/Logout";
-import { axiosMain } from "../api/axiosProvider";
 import { FileUploader } from "../components/FileUploader";
 
 function Home() {

@@ -9,7 +9,7 @@ function Logout() {
 
   const handleLogOut = () => {
     axiosMain
-      .post("/logout", {}, { withCredentials: true })
+      .post("/auth/logout", {}, { withCredentials: true })
       .then((response) => {
         console.log("LOG: logout: response from backend: " + response);
         if (response.status == 204) {
