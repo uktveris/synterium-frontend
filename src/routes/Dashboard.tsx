@@ -15,21 +15,6 @@ function Dashboard() {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
-  const messagesArr = [
-    {
-      owner: "first owner",
-      message: "first msg",
-    },
-    {
-      owner: "second owner",
-      message: "another msg",
-    },
-    {
-      owner: "last owner",
-      message: "more msg",
-    },
-  ];
-
   const handleNavToHome = () => {
     navigate("/home");
   };
@@ -53,7 +38,6 @@ function Dashboard() {
             "LOG: dashboard: error occurred: " + (err as Error).message,
           );
         });
-      // setMessages(messagesArr);
     };
     getMessages();
   }, [accessToken, axiosPrivate]);

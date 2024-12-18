@@ -4,13 +4,16 @@ import useAuth from "./useAuth";
 
 function useAxiosPrivate() {
   const { authed, accessToken, setAccessToken } = useAuth();
+  let currentToken = accessToken;
 
   useEffect(() => {
     console.log("useAxiosPrivate: access token from memory: " + accessToken);
     const requestInterceptor = axiosPrivate.interceptors.request.use(
       (config) => {
-        if (accessToken) {
-          config.headers["Authorization"] = "Bearer " + accessToken;
+        console.log("LOG: REQUEST INTERCEPTOR EXECUTED with token ending in:");
+        console.log(currentToken.slice(-10));
+        if (currentToken) {
+          config.headers["Authorization"] = "Bearer " + currentToken;
         }
         return config;
       },
@@ -31,6 +34,7 @@ function useAxiosPrivate() {
               withCredentials: true,
             });
             const refreshedAccessToken = response.data.accessToken;
+            currentToken = refreshedAccessToken;
             console.log(
               "LOG: useAxiosPrivate - refresher: new access token: " +
                 refreshedAccessToken,

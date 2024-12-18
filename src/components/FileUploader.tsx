@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAxiosPrivate } from "../hooks/useAxiosPrivate";
+import useAuth from "../hooks/useAuth";
 
 function FileUploader() {
   const [files, setFiles] = useState<FileList | null>(null);
   const axiosPrivate = useAxiosPrivate();
+  const { authed } = useAuth();
 
   const handleFileChange = (event) => {
     setFiles(event.target.files);
@@ -12,6 +14,11 @@ function FileUploader() {
   const handleUpload = () => {
     if (!files) {
       console.log("ERROR: fileUploader: no file selected..");
+      return;
+    }
+
+    if (!authed) {
+      console.log("ERROR: not authed..");
       return;
     }
 
