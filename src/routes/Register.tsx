@@ -2,7 +2,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
 import { axiosMain } from "../api/axiosProvider";
 
 interface FormInputs {
@@ -18,7 +17,7 @@ function Register() {
     formState: { errors },
   } = useForm<FormInputs>();
 
-  const { setAuthed } = useAuth();
+  const { setAuthed, setAccessToken } = useAuth();
   const [invalidPwd, setInvalidPwd] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -33,20 +32,31 @@ function Register() {
       console.log("typed pwd confirmation: " + data.confirmPwd);
       const email = data.email;
       const password = data.password;
+      handleRegiser(email, password);
+    }
+  };
 
-      axiosMain
-        .post("/auth/register", { email, password })
-        .then((response) => {
-          console.log("response: " + response);
-          if (response.data.success) {
-            console.log("managed to register!: " + response.data.success);
-            setAuthed(true);
-            navigate("/dashboard");
-          } else {
-            console.log(response.data.message);
-          }
-        })
-        .catch((err) => console.log("error: " + (err as Error).message));
+  const handleRegiser = async (email, password) => {
+    try {
+      const registerResponse = await axiosMain.post("/auth/register", {
+        email,
+        password,
+      });
+      if (!registerResponse.data.success) {
+        console.log("LOG: no success found, but no error..");
+        return;
+      }
+      const loginResponse = await axiosMain.post("/auth/login", {
+        email,
+        password,
+      });
+      const at = loginResponse.data.accessToken;
+      console.log("SUCCESS: register: received at: " + at);
+      setAccessToken(at);
+      setAuthed(true);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log("ERROR register: " + (err as Error).message);
     }
   };
 

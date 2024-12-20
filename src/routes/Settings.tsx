@@ -20,8 +20,6 @@ function Settings() {
         await axiosPrivate.get<{ title: string; desc: string }[]>(
           "/files/files-test",
         );
-      console.log("LOG: settings - response filetest:");
-      console.log(response.data);
       setLoading(false);
       setFileTest(response.data);
     } catch (err) {
