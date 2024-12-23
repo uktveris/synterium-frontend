@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 interface FileMetadata {
+  id: string;
   name: string;
   size: number;
   fileType: string;
@@ -25,19 +26,52 @@ function Dashboard() {
     navigate("/settings");
   };
 
+  const handleDownload = async (fileId: string, name: string) => {
+    try {
+      const response = await axiosPrivate.get(
+        "/files/file-download?id=" + fileId,
+        { responseType: "blob" },
+      );
+
+      const blob = new Blob([response.data], {
+        type: response.headers["Content-type"],
+      });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+
+      console.log(response.headers["Content-Disposition"]);
+
+      const fileName = name;
+
+      link.setAttribute("download", fileName);
+
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode?.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      console.log(response);
+    } catch (err) {
+      console.log("ERROR: dashboard: " + (err as Error).message);
+    }
+  };
+
   const getMessages = async () => {
     try {
       const response = await axiosPrivate.get("/files");
       const filesArr: FileMetadata[] = [];
       response.data.files.forEach((file) => {
         filesArr.push({
+          id: file._id,
           name: file.name,
           size: file.size,
           fileType: file.fileType,
           uploadedAt: file.uploadDateTime,
         });
       });
-      console.log(files);
+      // console.log(response.data.files);
+      console.log(filesArr);
       setLoadingFiles(false);
       setFiles(filesArr);
     } catch (err) {
@@ -64,6 +98,10 @@ function Dashboard() {
           <p>size: {file.size}</p>
           <p>type: {file.fileType}</p>
           <p>uploaded at: {file.uploadedAt.toString()}</p>
+          <button onClick={() => handleDownload(file.id, file.name)}>
+            download
+          </button>
+          <p>-----------</p>
         </div>
       ))}
       <button onClick={handleNavToHome}>Home</button>
