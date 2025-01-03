@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { axiosMain } from "../api/axiosProvider";
+import styles from "./styles.module.css";
 
 function Logout() {
   const { authed, setAuthed } = useAuth();
@@ -23,7 +24,15 @@ function Logout() {
       );
   };
 
-  return <>{authed && <button onClick={handleLogOut}>Logout</button>}</>;
+  return (
+    <>
+      {authed && (
+        <button className={styles.logoutButton} onClick={handleLogOut}>
+          Logout
+        </button>
+      )}
+    </>
+  );
 }
 
 export { Logout };

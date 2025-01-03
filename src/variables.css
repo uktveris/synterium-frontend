@@ -1,0 +1,11 @@
+:global(:root) {
+    --background-color: #ededed;
+    --text-color: #2c2c2c;
+    --accent-color-primary: #223132;
+    --accent-color-secondary: #cd853f;
+}
+
+:global([data-theme="dark"]) {
+    --background-color: #0e0e0e;
+    --text-color: #ededed;
+}

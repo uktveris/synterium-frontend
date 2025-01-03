@@ -1,0 +1,32 @@
+@import "../variables.css";
+
+.headerList {
+    background-color: var(--accent-color-secondary);
+}
+
+.headerList nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    margin: 0;
+}
+
+.loginButton,
+.logoutButton,
+.toggleThemeButton,
+.headerList nav ul button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.leftSideHeaderItem {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+}

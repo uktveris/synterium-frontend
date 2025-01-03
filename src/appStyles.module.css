@@ -1,0 +1,46 @@
+@import "./variables.css";
+
+:global(:root) {
+    font-family: "Arial";
+    line-height: 1.5;
+    line-height: 1.5;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:global(body) {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* #2C2C2C
+Onyx Shadow
+
+#9E2B25
+Auburn
+
+#5F5F60
+Graphite Steel
+
+#A0522D
+Sienna
+
+#CD853F
+Peru
+
+#EDEDED
+Ash White */
+
+/*
+433D3D
+8CB5A3
+223132
+8D5B52
+C0A660
+*/

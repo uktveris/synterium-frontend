@@ -11,26 +11,32 @@ import {
 import { Settings } from "./routes/Settings";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Register } from "./routes/Register";
+import Header from "./components/Header";
+import styles from "./appStyles.module.css";
+import { ThemeProvider } from "./context/ThemeProvider";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Public routes here */}
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          {/* Protected routes here */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/settings" element={<Settings />} />
-          </Route>
-          <Route path="*" element={<h1>page not found!</h1>} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <Header />
+          <Routes>
+            {/* Public routes here */}
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            {/* Protected routes here */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+            <Route path="*" element={<h1>page not found!</h1>} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
