@@ -1,0 +1,45 @@
+@import "../variables.css";
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 2rem);
+}
+
+.buttonsContainer button {
+    font-weight: bold;
+    border: none;
+    border-radius: 1rem;
+    background: var(--accent-gradient);
+    width: 4rem;
+    height: 2rem;
+    cursor: pointer;
+    /* box-shadow: 0 0 10rem var(--accent-gradient); */
+    box-shadow: 0 0 1rem #5f5f60;
+    transition: transform 0.1s ease-in-out;
+}
+
+.buttonsContainer button:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.carousel {
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.carousel > * {
+    width: 50%;
+    flex-shrink: 0;
+    flex-grow: 1;
+}

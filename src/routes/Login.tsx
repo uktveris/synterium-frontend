@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosMain } from "../api/axiosProvider";
 import useAuth from "../hooks/useAuth";
+import styles from "./login.module.css";
 
 interface FormInputs {
   email: string;
@@ -54,25 +55,35 @@ function Login() {
   };
 
   return (
-    <>
-      <h1>This is login page</h1>
-      <form onSubmit={handleSubmit(onSubmit)} name="login">
-        <label htmlFor="email">Email: </label>
-        <input
-          type="text"
-          {...register("email", { required: "Email is required!" })}
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          {...register("password", { required: "Password is required!" })}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-        <button type="submit"> Login </button>
-      </form>
-      <button onClick={navToRegister}>Want to register?</button>
-    </>
+    <div className={styles.mainContainer}>
+      <h1>Log in</h1>
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit(onSubmit)} name="login">
+          <label htmlFor="email">Email: </label>
+          <input
+            type="text"
+            {...register("email", { required: "Email is required!" })}
+            className={`${styles.inputField} ${errors.email ? styles.inputError : ""}`}
+          />
+          {errors.email && (
+            <p className={styles.validationError}>{errors.email.message}</p>
+          )}
+          <label htmlFor="password">Password: </label>
+          <input
+            type="password"
+            {...register("password", { required: "Password is required!" })}
+            className={`${styles.inputField} ${errors.password ? styles.inputError : ""}`}
+          />
+          {errors.password && (
+            <p className={styles.validationError}>{errors.password.message}</p>
+          )}
+          <button type="submit"> Login </button>
+        </form>
+      </div>
+      <button className={styles.toRegisterButton} onClick={navToRegister}>
+        No account? Register
+      </button>
+    </div>
   );
 }
 

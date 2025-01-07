@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { axiosMain } from "../api/axiosProvider";
-import styles from "./styles.module.css";
+import styles from "./header.module.css";
 
 function Logout() {
   const { authed, setAuthed } = useAuth();

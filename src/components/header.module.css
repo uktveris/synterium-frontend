@@ -2,6 +2,7 @@
 
 .headerList {
     background-color: var(--accent-color-secondary);
+    background: linear-gradient(to right, #8cb5a3, #c0a660);
 }
 
 .headerList nav ul {
@@ -12,6 +13,12 @@
     justify-content: flex-start;
     padding: 1rem;
     margin: 0;
+}
+
+.logo {
+    object-fit: contain;
+    width: 3rem;
+    margin-bottom: -1rem;
 }
 
 .loginButton,

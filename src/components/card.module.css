@@ -1,0 +1,12 @@
+@import "../variables.css";
+
+.mainContainer {
+    text-align: center;
+}
+
+.cardInfo {
+    border-radius: 1rem;
+    background: rgba(128, 128, 128, 0.1);
+    width: calc(100% - 2rem);
+    margin: 0 1rem 0 1rem;
+}

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import styles from "./styles.module.css";
+import styles from "./header.module.css";
 import { Logout } from "./Logout";
 import { ToggleThemeButton } from "./ToggleThemeButton";
 
@@ -12,6 +12,12 @@ function Header() {
     <div className={styles.headerList}>
       <nav>
         <ul>
+          <li>
+            <img
+              src="../../assets/cloud-sotrage-synt.png"
+              className={styles.logo}
+            />
+          </li>
           <li>
             <button onClick={() => navigate("/home")}>Home</button>
           </li>
