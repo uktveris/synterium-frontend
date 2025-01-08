@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosMain } from "../api/axiosProvider";
 // import styles from "./register.module.css";
 import styles from "./login.module.css";
+import Header from "../components/Header";
 
 interface FormInputs {
   email: string;
@@ -67,55 +68,60 @@ function Register() {
   };
 
   return (
-    <div className={styles.mainContainer}>
-      <h1>Register</h1>
-      <div className={styles.formContainer}>
-        <form onSubmit={handleSubmit(onSubmit)} name="register">
-          <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            {...register("email", { required: "Email is required!" })}
-            className={`${styles.inputField} ${errors.email ? styles.inputError : ""}`}
-          />
-          {errors.email && (
-            <p className={styles.validationError}>{errors.email.message}</p>
-          )}
+    <>
+      <Header />
+      <div className={styles.mainContainer}>
+        <h1>Register</h1>
+        <div className={styles.formContainer}>
+          <form onSubmit={handleSubmit(onSubmit)} name="register">
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              {...register("email", { required: "Email is required!" })}
+              className={`${styles.inputField} ${errors.email ? styles.inputError : ""}`}
+            />
+            {errors.email && (
+              <p className={styles.validationError}>{errors.email.message}</p>
+            )}
 
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            {...register("password", { required: "Password is required!" })}
-            className={`${styles.inputField} ${errors.password ? styles.inputError : ""}`}
-          />
-          {errors.password && (
-            <p className={styles.validationError}>{errors.password.message}</p>
-          )}
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              {...register("password", { required: "Password is required!" })}
+              className={`${styles.inputField} ${errors.password ? styles.inputError : ""}`}
+            />
+            {errors.password && (
+              <p className={styles.validationError}>
+                {errors.password.message}
+              </p>
+            )}
 
-          <label htmlFor="confirmPwd">Confirm password: </label>
-          <input
-            type="password"
-            {...register("confirmPwd", {
-              required: "Need to confirm password!",
-            })}
-            className={`${styles.inputField} ${errors.confirmPwd ? styles.inputError : ""}`}
-          />
-          {errors.confirmPwd && (
-            <p className={styles.validationError}>
-              {errors.confirmPwd.message}
-            </p>
-          )}
-          <button type="submit">Register</button>
-          {invalidPwd && (
-            <p className={styles.validationError}>
-              The passwords do not match!
-            </p>
-          )}
-        </form>
+            <label htmlFor="confirmPwd">Confirm password: </label>
+            <input
+              type="password"
+              {...register("confirmPwd", {
+                required: "Need to confirm password!",
+              })}
+              className={`${styles.inputField} ${errors.confirmPwd ? styles.inputError : ""}`}
+            />
+            {errors.confirmPwd && (
+              <p className={styles.validationError}>
+                {errors.confirmPwd.message}
+              </p>
+            )}
+            <button type="submit">Register</button>
+            {invalidPwd && (
+              <p className={styles.validationError}>
+                The passwords do not match!
+              </p>
+            )}
+          </form>
+        </div>
+        <button className={styles.toLoginButton} onClick={navToLogin}>
+          Already have an account? Log in
+        </button>
       </div>
-      <button className={styles.toLoginButton} onClick={navToLogin}>
-        Already have an account? Log in
-      </button>
-    </div>
+    </>
   );
 }
 

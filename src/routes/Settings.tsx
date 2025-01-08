@@ -1,9 +1,14 @@
+import Header from "../components/Header";
+
 function Settings() {
   return (
-    <>
-      <h1>The settings page here</h1>
-      <p>Some settings to play aroud here</p>
-    </>
+    <div>
+      <Header />
+      <div className={styles.mainContainer}>
+        <h1>The settings page here</h1>
+        <p>Some settings to play aroud here</p>
+      </div>
+    </div>
   );
 }
 

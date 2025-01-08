@@ -20,7 +20,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <Header />
+          {/* <Header /> */}
           <Routes>
             {/* Public routes here */}
             <Route path="/" element={<Navigate to="/home" />} />

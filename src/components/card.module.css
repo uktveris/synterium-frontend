@@ -1,7 +1,16 @@
 @import "../variables.css";
 
 .mainContainer {
-    text-align: center;
+}
+
+.iconWrapper {
+    width: 50%;
+    min-width: 14rem;
+    font-size: 7rem;
+    /* border: 1px solid red; */
+    padding-top: 1rem;
+    background: var(--accent-gradient);
+    border-radius: 6rem;
 }
 
 .cardInfo {
@@ -9,4 +18,27 @@
     background: rgba(128, 128, 128, 0.1);
     width: calc(100% - 2rem);
     margin: 0 1rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    opacity: 0.8;
+    transition:
+        opacity 0.2s ease-out,
+        transform 0.2s ease-out;
+}
+
+.cardInfo:hover {
+    opacity: 1;
+    transform: scale(1.02, 1.02);
+}
+
+.cardInfo h3 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.cardInfo p {
+    margin: 0;
 }

@@ -1,8 +1,10 @@
 @import "../variables.css";
 
 .headerList {
-    background-color: var(--accent-color-secondary);
     background: linear-gradient(to right, #8cb5a3, #c0a660);
+    position: fixed;
+    z-index: 999;
+    width: 100%;
 }
 
 .headerList nav ul {
@@ -13,6 +15,7 @@
     justify-content: flex-start;
     padding: 1rem;
     margin: 0;
+    height: 5rem;
 }
 
 .logo {

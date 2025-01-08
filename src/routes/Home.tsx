@@ -4,6 +4,8 @@ import { Logout } from "../components/Logout";
 import { FileUploader } from "../components/FileUploader";
 import { Hero } from "../components/Hero";
 import { Features } from "../components/Features";
+import styles from "./home.module.css";
+import Header from "../components/Header";
 
 function Home() {
   const navigate = useNavigate();
@@ -27,7 +29,8 @@ function Home() {
   };
 
   return (
-    <>
+    <div className={styles.mainContainer}>
+      <Header />
       <Hero />
       <Features />
       {authed && <p>You are logged in curently!</p>}
@@ -38,7 +41,7 @@ function Home() {
       {!authed && <button onClick={navtoRegister}>to register</button>}
       {authed && <FileUploader />}
       {authed && <Logout />}
-    </>
+    </div>
   );
 }
 

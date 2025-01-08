@@ -84,6 +84,7 @@ function Dashboard() {
   }, [accessToken, axiosPrivate]);
   return (
     <div className={styles.mainContainer}>
+      <Header />
       <h1>Dashboard</h1>
       <p>this is some sample text</p>
       <h4>Messages: </h4>

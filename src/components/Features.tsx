@@ -2,9 +2,37 @@ import { useEffect, useState } from "react";
 import styles from "./features.module.css";
 import { Card } from "./Card";
 import { useSwipeable } from "react-swipeable";
+import { IoFileTrayStackedSharp } from "react-icons/io5";
+import { FaBoltLightning } from "react-icons/fa6";
+import { FaCloudDownloadAlt } from "react-icons/fa";
+import { CiMobile1 } from "react-icons/ci";
+import { FaUserFriends } from "react-icons/fa";
+
+const cards = [
+  {
+    title: "card1",
+    icon: IoFileTrayStackedSharp,
+  },
+  {
+    title: "card2",
+    icon: FaBoltLightning,
+  },
+  {
+    title: "card3",
+    icon: FaCloudDownloadAlt,
+  },
+  {
+    title: "card4",
+    icon: CiMobile1,
+  },
+  {
+    title: "card5",
+    icon: FaUserFriends,
+  },
+];
 
 function Features() {
-  const items = ["card1", "card2", "card3", "card4", "card5", "card6"];
+  // const items = ["card1", "card2", "card3", "card4", "card5"];
   const show = 2;
 
   const [currIndex, setCurrIndex] = useState(0);
@@ -21,10 +49,8 @@ function Features() {
   });
 
   useEffect(() => {
-    setLength(items.length);
-  }, [items]);
-
-  console.log("current index: " + currIndex);
+    setLength(cards.length);
+  }, [cards]);
 
   const goBack = () => {
     if (currIndex > 0) {
@@ -52,8 +78,11 @@ function Features() {
           transform: `translateX(-${(currIndex * 100) / show}%)`,
         }}
       >
-        {items.map((item) => (
+        {/* {items.map((item) => (
           <Card header={item} text={text} />
+        ))} */}
+        {cards.map((card) => (
+          <Card header={card.title} text={text} Icon={card.icon} />
         ))}
       </div>
     </div>
