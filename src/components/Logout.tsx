@@ -15,7 +15,7 @@ function Logout() {
         console.log("LOG: logout: response from backend: " + response);
         if (response.status == 204) {
           setAuthed(false);
-          navigate("/login");
+          navigate("/login", { replace: true });
           console.log("LOG: logout: successfully logged out!");
         }
       })

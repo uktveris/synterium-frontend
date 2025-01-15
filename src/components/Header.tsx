@@ -45,17 +45,25 @@ function Header() {
             />
           </li>
           <li>
-            <button onClick={() => navigate("/home")}>Home</button>
+            <button onClick={() => navigate("/home", { replace: true })}>
+              Home
+            </button>
           </li>
           {authed && (
             <>
               <li>
-                <button onClick={() => navigate("/dashboard")}>
+                <button
+                  onClick={() => navigate("/dashboard", { replace: true })}
+                >
                   Dashboard
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("/settings")}>Settings</button>
+                <button
+                  onClick={() => navigate("/settings", { replace: true })}
+                >
+                  Settings
+                </button>
               </li>
             </>
           )}
@@ -69,7 +77,7 @@ function Header() {
               <li>
                 <button
                   className={styles.loginButton}
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/login", { replace: true })}
                 >
                   Log in
                 </button>

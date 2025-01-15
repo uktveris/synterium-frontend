@@ -1,6 +1,7 @@
 @import "../variables.css";
 
 .mainContainer {
+    padding: 1rem 0 1rem 0;
 }
 
 .iconWrapper {
@@ -24,6 +25,7 @@
     text-align: center;
     padding: 1rem;
     opacity: 0.8;
+    backdrop-filter: blur(0.5rem);
     transition:
         opacity 0.2s ease-out,
         transform 0.2s ease-out;

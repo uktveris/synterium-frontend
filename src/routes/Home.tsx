@@ -6,6 +6,8 @@ import { Hero } from "../components/Hero";
 import { Features } from "../components/Features";
 import styles from "./home.module.css";
 import Header from "../components/Header";
+import { MobilePromo } from "../components/MobilePromo";
+import { ParallaxBackground } from "../components/ParallaxBackground";
 
 function Home() {
   const navigate = useNavigate();
@@ -30,9 +32,11 @@ function Home() {
 
   return (
     <div className={styles.mainContainer}>
+      <ParallaxBackground />
       <Header />
       <Hero />
       <Features />
+      <MobilePromo />
       {authed && <p>You are logged in curently!</p>}
       {!authed && <p>You are logged out now!</p>}
       {!authed && <button onClick={navToLogin}>to login</button>}

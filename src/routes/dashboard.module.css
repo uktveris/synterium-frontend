@@ -6,3 +6,17 @@
     padding: 0 2rem 0 2rem;
     align-items: center;
 }
+
+.content {
+    padding-top: 5rem;
+    width: 100%;
+}
+
+.content h1 {
+    font-size: 4rem;
+}
+
+.fileContainer {
+    display: flex;
+    flex-wrap: wrap;
+}

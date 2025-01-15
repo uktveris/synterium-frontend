@@ -4,6 +4,7 @@ import { axiosMain } from "../api/axiosProvider";
 import useAuth from "../hooks/useAuth";
 import styles from "./login.module.css";
 import Header from "../components/Header";
+import { ParallaxBackground } from "../components/ParallaxBackground";
 
 interface FormInputs {
   email: string;
@@ -57,6 +58,7 @@ function Login() {
 
   return (
     <div>
+      <ParallaxBackground />
       <Header />
       <div className={styles.mainContainer}>
         <h1>Log in</h1>

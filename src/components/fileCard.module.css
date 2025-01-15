@@ -1,0 +1,32 @@
+@import "../variables.css";
+
+.mainContainer {
+    padding: 2rem;
+    background: rgba(128, 128, 128, 0.1);
+    border-radius: 3rem;
+    width: max-content;
+}
+
+.mainContainer h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.fileInfo button {
+    border-radius: 2rem;
+    padding: 1rem;
+    min-width: 6rem;
+    border: none;
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+.downloadButton {
+    background: var(--accent-gradient);
+}
+
+.expanded {
+    position: absolute;
+    width: 50%;
+}

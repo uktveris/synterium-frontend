@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import styles from "./settings.module.css";
 
 function Settings() {
   return (

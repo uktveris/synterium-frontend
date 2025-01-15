@@ -32,7 +32,6 @@ const cards = [
 ];
 
 function Features() {
-  // const items = ["card1", "card2", "card3", "card4", "card5"];
   const show = 2;
 
   const [currIndex, setCurrIndex] = useState(0);
@@ -78,11 +77,8 @@ function Features() {
           transform: `translateX(-${(currIndex * 100) / show}%)`,
         }}
       >
-        {/* {items.map((item) => (
-          <Card header={item} text={text} />
-        ))} */}
-        {cards.map((card) => (
-          <Card header={card.title} text={text} Icon={card.icon} />
+        {cards.map((card, index) => (
+          <Card key={index} header={card.title} text={text} Icon={card.icon} />
         ))}
       </div>
     </div>

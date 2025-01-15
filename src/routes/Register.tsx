@@ -3,9 +3,9 @@ import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosMain } from "../api/axiosProvider";
-// import styles from "./register.module.css";
 import styles from "./login.module.css";
 import Header from "../components/Header";
+import { ParallaxBackground } from "../components/ParallaxBackground";
 
 interface FormInputs {
   email: string;
@@ -69,6 +69,7 @@ function Register() {
 
   return (
     <>
+      <ParallaxBackground />
       <Header />
       <div className={styles.mainContainer}>
         <h1>Register</h1>
