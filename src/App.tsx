@@ -11,8 +11,7 @@ import {
 import { Settings } from "./routes/Settings";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Register } from "./routes/Register";
-import Header from "./components/Header";
-import styles from "./appStyles.module.css";
+import FileUpload from "./routes/FileUpload";
 import { ThemeProvider } from "./context/ThemeProvider";
 
 function App() {
@@ -31,6 +30,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/file-upload" element={<FileUpload />} />
             </Route>
             <Route path="*" element={<h1>page not found!</h1>} />
           </Routes>

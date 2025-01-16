@@ -13,9 +13,14 @@ interface FileMetadataProps {
 function FileCard({ id, name, size, fileType, uploadedAt }: FileMetadataProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const handleExpand = () => {
-    setExpanded(expanded ? false : true);
-  };
+  const date = new Date(uploadedAt);
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const uploadDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
 
   const fileSize =
     size < 1000
@@ -58,16 +63,13 @@ function FileCard({ id, name, size, fileType, uploadedAt }: FileMetadataProps) {
   };
 
   return (
-    // <div className={styles.mainContainer}>
-    <div
-      className={`${styles.mainContainer} ${expanded ? styles.expanded : ""}`}
-    >
+    <div className={styles.mainContainer}>
       <h4>{name}</h4>
       <div className={styles.fileInfo}>
+        <p>{fileType}</p>
         <p>{fileSize}</p>
-        <button className={styles.infoButton} onClick={handleExpand}>
-          Info
-        </button>
+        <p>{uploadDateTime}</p>
+        <button className={styles.infoButton}>Info</button>
         <button
           className={styles.downloadButton}
           onClick={() => handleDownload(id, name)}

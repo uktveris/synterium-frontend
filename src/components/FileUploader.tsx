@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAxiosPrivate } from "../hooks/useAxiosPrivate";
 import useAuth from "../hooks/useAuth";
+import styles from "./fileUploader.module.css";
 
 function FileUploader() {
   const [files, setFiles] = useState<FileList | null>(null);
@@ -38,10 +39,10 @@ function FileUploader() {
   };
 
   return (
-    <>
+    <div className={styles.mainContainer}>
       <input type="file" multiple onChange={handleFileChange} />
       <button onClick={handleUpload}>upload</button>
-    </>
+    </div>
   );
 }
 

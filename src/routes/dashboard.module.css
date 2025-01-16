@@ -12,6 +12,34 @@
     width: 100%;
 }
 
+.topContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.uploadFile {
+    border: 1px solid var(--text-color);
+    background: transparent;
+    border-radius: 2rem;
+    height: 5rem;
+    width: 10rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    transition:
+        color 0.2s ease-in-out,
+        background 0.2s ease-in-out,
+        transform 0.2s ease-in-out;
+}
+
+.uploadFile:hover {
+    color: initial;
+    background: var(--accent-gradient);
+    transform: scale(1.1);
+}
+
 .content h1 {
     font-size: 4rem;
 }
@@ -19,4 +47,8 @@
 .fileContainer {
     display: flex;
     flex-wrap: wrap;
+}
+
+.cardExpanded {
+    justify-content: center;
 }

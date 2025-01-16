@@ -20,6 +20,13 @@
     border: none;
     font-weight: bold;
     margin: 0.5rem;
+    cursor: pointer;
+}
+
+.fileInfo p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
 }
 
 .downloadButton {
@@ -27,6 +34,7 @@
 }
 
 .expanded {
-    position: absolute;
-    width: 50%;
+    position: fixed;
+    width: 30%;
+    height: 50%;
 }

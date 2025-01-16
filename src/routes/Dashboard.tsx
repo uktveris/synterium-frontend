@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import styles from "./dashboard.module.css";
 import Header from "../components/Header";
 import { FileCard } from "../components/FileCard";
+import { useNavigate } from "react-router-dom";
 
 interface FileMetadata {
   id: string;
@@ -18,6 +19,7 @@ function Dashboard() {
   const [loadingFiles, setLoadingFiles] = useState(true);
   const { accessToken } = useAuth();
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const getMessages = async () => {
     try {
@@ -47,7 +49,15 @@ function Dashboard() {
     <div className={styles.mainContainer}>
       <Header />
       <div className={styles.content}>
-        <h1>Your files</h1>
+        <div className={styles.topContainer}>
+          <h1>Your files</h1>
+          <button
+            className={styles.uploadFile}
+            onClick={() => navigate("/file-upload")}
+          >
+            Upload Files
+          </button>
+        </div>
         <p>File that you have uploaded will appear here.</p>
         {loadingFiles && <p>Loading...</p>}
         {!loadingFiles && files.length === 0 && (
@@ -65,18 +75,6 @@ function Dashboard() {
             />
           ))}
         </div>
-        {/* {files.map((file, index) => (
-          <div key={index}>
-            <p>file: {file.name}</p>
-            <p>size: {file.size}</p>
-            <p>type: {file.fileType}</p>
-            <p>uploaded at: {file.uploadedAt.toString()}</p>
-            <button onClick={() => handleDownload(file.id, file.name)}>
-              download
-            </button>
-            <p>-----------</p>
-          </div>
-        ))} */}
       </div>
     </div>
   );

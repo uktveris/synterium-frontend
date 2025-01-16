@@ -10,25 +10,8 @@ import { MobilePromo } from "../components/MobilePromo";
 import { ParallaxBackground } from "../components/ParallaxBackground";
 
 function Home() {
-  const navigate = useNavigate();
   const { authed } = useAuth();
   console.log("authed value is: " + authed);
-
-  const navToLogin = () => {
-    navigate("/login");
-  };
-
-  const navToDash = () => {
-    navigate("/dashboard");
-  };
-
-  const navtoSettings = () => {
-    navigate("/settings");
-  };
-
-  const navtoRegister = () => {
-    navigate("/register");
-  };
 
   return (
     <div className={styles.mainContainer}>
@@ -37,14 +20,6 @@ function Home() {
       <Hero />
       <Features />
       <MobilePromo />
-      {authed && <p>You are logged in curently!</p>}
-      {!authed && <p>You are logged out now!</p>}
-      {!authed && <button onClick={navToLogin}>to login</button>}
-      <button onClick={navToDash}> to dashboard</button>
-      <button onClick={navtoSettings}> to settings</button>
-      {!authed && <button onClick={navtoRegister}>to register</button>}
-      {authed && <FileUploader />}
-      {authed && <Logout />}
     </div>
   );
 }

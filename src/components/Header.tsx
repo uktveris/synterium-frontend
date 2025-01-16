@@ -65,6 +65,13 @@ function Header() {
                   Settings
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => navigate("/file-upload", { replace: true })}
+                >
+                  Upload
+                </button>
+              </li>
             </>
           )}
           <div className={styles.leftSideHeaderItem}>
