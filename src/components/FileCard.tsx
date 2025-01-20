@@ -1,6 +1,7 @@
 import styles from "./fileCard.module.css";
 import { axiosPrivate } from "../api/axiosProvider";
 import { useState } from "react";
+import { formatFromBytes } from "../utils/fileSizeConverter";
 
 interface FileMetadataProps {
   id: string;
@@ -21,15 +22,7 @@ function FileCard({ id, name, size, fileType, uploadedAt }: FileMetadataProps) {
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
   const uploadDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
-
-  const fileSize =
-    size < 1000
-      ? size + " B"
-      : size >= 1000 && size < 1000000
-        ? size / 1000 + " KB"
-        : size >= 1000000 && size < 1000000000
-          ? size / 1000000 + " MB"
-          : size / 1000000000 + " GB";
+  const fileSize = formatFromBytes(size);
 
   const handleDownload = async (fileId: string, name: string) => {
     try {

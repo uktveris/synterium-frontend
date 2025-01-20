@@ -41,6 +41,7 @@ function Header() {
           <li>
             <img
               src="../../assets/cloud-sotrage-synt.png"
+              onClick={() => navigate("/home", { replace: true })}
               className={styles.logo}
             />
           </li>

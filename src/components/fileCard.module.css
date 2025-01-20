@@ -5,6 +5,7 @@
     background: rgba(128, 128, 128, 0.1);
     border-radius: 3rem;
     width: max-content;
+    margin: 1rem;
 }
 
 .mainContainer h4 {

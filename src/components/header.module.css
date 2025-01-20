@@ -22,6 +22,7 @@
     object-fit: contain;
     width: 3rem;
     margin-bottom: -1rem;
+    cursor: pointer;
 }
 
 .loginButton,

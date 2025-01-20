@@ -1,1 +1,114 @@
 @import "../variables.css";
+
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fileUploadContainer {
+    border-radius: 2rem;
+    display: flex;
+    background: rgba(128, 128, 128, 0.1);
+    flex-direction: column;
+    padding: 3rem;
+    width: 40%;
+    min-width: 7rem;
+    margin: 2rem;
+}
+
+.fileUploadContainer input[type="file"] {
+    display: none;
+}
+
+.fileBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--text-color);
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    height: 10rem;
+    cursor: pointer;
+}
+
+.fileUploadContainer button {
+    border: none;
+    font-weight: bold;
+    font-size: 2rem;
+    height: 3rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    height: 4rem;
+    background: var(--accent-gradient);
+    transition: transform 0.15s ease-in-out;
+}
+
+.fileUploadContainer button:hover {
+    transform: scale(1.03);
+}
+
+.fileListContainer {
+    background: rgba(128, 128, 128, 0.1);
+    width: 40%;
+    border-radius: 2rem;
+    margin-right: 2rem;
+}
+
+.fileListContainer h4 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+    margin-top: 1rem;
+    text-align: center;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.fileListContainer .fileEntry {
+    border-bottom: 1px solid var(--file-border-color);
+    margin: 0 1rem 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.fileListContainer .fileEntry:first-child {
+    border-top: 1px solid var(--file-border-color);
+}
+
+.fileListContainer .fileEntry:last-child {
+    margin-bottom: 1rem;
+}
+
+.fileEntry h5 {
+    font-size: 1rem;
+    margin: 0;
+    flex: 4;
+}
+
+.fileEntry p {
+    flex: 2;
+}
+
+.fileEntry button {
+    flex: 1;
+    border-radius: 2rem;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition:
+        background 0.1s ease-in-out,
+        color 0.1s ease-in-out;
+}
+
+.fileEntry button:hover {
+    background: darkred;
+    color: white;
+}
+
+.movedRight {
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+}

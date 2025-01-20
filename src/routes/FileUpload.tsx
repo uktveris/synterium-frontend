@@ -7,7 +7,7 @@ function FileUpload() {
     <div>
       <Header />
       <div className={styles.mainContainer}>
-        <h1>The file uploader</h1>
+        <h1>Upload files</h1>
         <FileUploader />
       </div>
     </div>

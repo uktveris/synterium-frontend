@@ -1,7 +1,4 @@
-import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { Logout } from "../components/Logout";
-import { FileUploader } from "../components/FileUploader";
 import { Hero } from "../components/Hero";
 import { Features } from "../components/Features";
 import styles from "./home.module.css";
