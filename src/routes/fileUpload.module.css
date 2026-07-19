@@ -2,6 +2,7 @@
 
 .mainContainer {
     padding: 5rem 2rem 0 2rem;
+    overflow: hidden;
 }
 
 .mainContainer h1 {
